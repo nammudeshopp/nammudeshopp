@@ -150,12 +150,22 @@
                 <h2>Contact Us</h2>
                 <p>Have any questions? We'd love to hear from you.</p>
             </div>
-            <form id="contactUsForm" style="display: flex; flex-direction: column; gap: 20px;">
-                <input type="text" placeholder="Your Name" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'">
-                <input type="tel" placeholder="Phone Number" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'">
-                <textarea placeholder="Your Message" rows="5" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'"></textarea>
+            <script>var submitted = false;</script>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { document.getElementById('contactUsForm').style.display='none'; document.getElementById('thankYouMessage').style.display='block'; }"></iframe>
+
+            <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdTx73iBS5A8X3RW3jM7p0czhFP-4d3e1EM6e_Slglf2RKhUg/formResponse" method="POST" target="hidden_iframe" id="contactUsForm" style="display: flex; flex-direction: column; gap: 20px;" onsubmit="submitted=true; setTimeout(() => { if(document.activeElement){document.activeElement.blur();} }, 100);">
+                <input type="text" name="entry.1942431576" placeholder="Your Name" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'">
+                <input type="email" name="entry.1563792724" placeholder="Email Address" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'">
+                <textarea name="entry.358450186" placeholder="Your Message" rows="5" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'"></textarea>
                 <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px; width: 100%;">Send Message</button>
             </form>
+
+            <div id="thankYouMessage" style="display: none; text-align: center; padding: 40px 20px; border-radius: var(--border-radius); background: rgba(255, 255, 255, 0.5);">
+                <div style="font-size: 3.5rem; margin-bottom: 15px;">✅</div>
+                <h3 style="font-size: 1.8rem; color: var(--text-dark); margin-bottom: 10px; font-weight: 700;">Thank You!</h3>
+                <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.6;">We have received your message and will get back to you shortly.</p>
+                <button onclick="document.getElementById('thankYouMessage').style.display='none'; document.getElementById('contactUsForm').reset(); document.getElementById('contactUsForm').style.display='flex'; submitted=false;" class="btn btn-secondary" style="margin-top: 25px; padding: 10px 25px; font-size: 1rem; border: none; cursor: pointer; border-radius: var(--border-radius);">Send Another</button>
+            </div>
         </div>
     </section>
 
@@ -166,6 +176,8 @@
             <div class="footer-links" style="margin: 20px 0;">
                 <a href="terms.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Terms and Conditions</a>
                 <a href="privacy.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Privacy Policy</a>
+                <a href="refund.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Refund Policy</a>
+                <a href="shipping.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Shipping Policy</a>
             </div>
             <p>© 2026 NammudeShop. All rights reserved.</p>
         </div>
