@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NammudeShop | Premium Kitchen Essentials</title>
+    <meta name="description" content="Kerala's own shop for premium quality kitchen products, starting with our stylish 3 in 1 Soap Pump Dispenser.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP for Apple-like Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">Nammude<span>Shop</span></div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#product">Product</a>
+            <a href="#pricing">Combos</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Scroll Sequence Animation Section -->
+    <section id="features-sequence">
+        <div class="sequence-sticky">
+            <canvas id="sequence-canvas"></canvas>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="background-image: url('assets/nammude_hero_bg_1775285581914.png');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge fade-in-up">#1 Kitchen Essential</span>
+            <h1 class="fade-in-up delay-1">കേരളത്തിന്റെ സ്വന്തം ഷോപ്പ്</h1>
+            <p class="fade-in-up delay-2">Premium kitchen essentials for every home</p>
+            <div class="hero-actions fade-in-up delay-3">
+                <a href="#pricing" class="btn btn-primary">Shop Now</a>
+                <p class="trust-text">🔒 Secure checkout &nbsp;&nbsp;|&nbsp;&nbsp; 🚚 Fast delivery</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Call-to-Action -->
+    <section class="review-cta">
+        <div class="container">
+            <div class="glass-panel review-card">
+                <h3>Love your NammudeShop purchase?</h3>
+                <p>Your feedback keeps us improving. Share a quick review in seconds.</p>
+                <button class="btn btn-primary review-btn" type="button">See Review</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Highlight Section -->
+    <section id="product" class="product-highlight">
+        <div class="container glass-panel">
+            <div class="product-split">
+                <div class="product-image-wrapper">
+                    <img src="assets/nammude_product_1775285594469.png" alt="3 in 1 Soap Pump Dispenser" class="main-product-img">
+                    <div class="color-options">
+                        <span class="color-dot green active" title="Green"></span>
+                        <span class="color-dot pink" title="Pink"></span>
+                        <span class="color-label">Available in Green & Pink</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h2 class="section-title">3 in 1 Soap Pump Dispenser with Sponge Holder</h2>
+                    <p class="description">
+                        Upgrade your kitchen and bathroom with our highly stylish and functional dish soap pump. 
+                        Designed perfectly to fit your modern sink countertop while bringing convenience to your everyday dishwashing.
+                    </p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Elegant minimalist design</li>
+                        <li><span class="check">✓</span> Built-in sponge holder</li>
+                        <li><span class="check">✓</span> Premium high-quality build</li>
+                    </ul>
+                    <a href="#pricing" class="btn btn-primary btn-large">View Prices</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Combos Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Best Value Combos</h2>
+                <p>Choose the perfect package for your home</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- 1. Single Product -->
+                <div class="pricing-card">
+                    <div class="card-content">
+                        <h3 class="card-title">Single Product</h3>
+                        <div class="price">₹300</div>
+                        <img src="assets/nammude_product_1775285594469.png" alt="Single Product" class="card-img">
+                        <p class="card-desc">3 in 1 soap pump dispenser with sponge holder for kitchen sink & bathroom. Stylish and functional dish soap pump. Available in green and pink.</p>
+                        <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
+                    </div>
+                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                </div>
+
+                <!-- 2. NAMMUDE COMBO -->
+                <div class="pricing-card promo-card">
+                    <div class="card-badge">25% OFF</div>
+                    <div class="card-content">
+                        <h3 class="card-title">NAMMUDE COMBO</h3>
+                        <div class="subtitle" style="font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">TWO kitchen dispenser</div>
+                        <div class="price" style="margin-top: 5px;">
+                            <span class="old-price" style="font-size: 1.2rem;">₹600 ❌</span>
+                            <span class="new-price" style="font-size: 1.8rem;">₹499 ✅</span>
+                        </div>
+                        <img src="7/New%20folder/df398d57-fb05-48f3-81c0-ff108bba734f.png" alt="Nammude Combo" class="card-img combo-img">
+                        <p class="card-desc">FOR KITCHEN DISPENSER 3 in 1 soap pump dispenser with sponge holder. Best value combo for home use. Perfect backup for the bathroom!</p>
+                        <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
+                    </div>
+                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                </div>
+
+                <!-- 3. STARTER COMBO -->
+                <div class="pricing-card">
+                    <div class="card-badge secondary">Starter Combo</div>
+                    <div class="card-content">
+                        <h3 class="card-title">STARTER COMBO</h3>
+                        <div class="price">₹329</div>
+                        <img src="assets/nammude_starter_combo_1775285689366.png" alt="Starter Combo" class="card-img">
+                        <p class="card-desc">ABS plastic 3 in 1 soap dispenser + 10x non-scratch steel wool dish cloth (wire dish washing rags).</p>
+                        <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
+                    </div>
+                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                </div>
+
+                <!-- 4. MOST POPULAR -->
+                <div class="pricing-card most-popular">
+                    <div class="card-badge active">Most Popular 🔥</div>
+                    <div class="card-content">
+                        <h3 class="card-title">MOST POPULAR</h3>
+                        <div class="price">₹449</div>
+                        <img src="assets/nammude_popular_combo_1775285784123.png" alt="Most Popular Combo" class="card-img">
+                        <p class="card-desc">3 in 1 soap dispenser + oil dispenser bottle with silicone brush. Perfect for cooking, BBQ, dosa making, and kitchen use.</p>
+                        <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
+                    </div>
+                    <button class="btn btn-secondary buy-btn pop-pulse">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section" style="padding: 100px 0; background-color: var(--white);">
+        <div class="container glass-panel" style="max-width: 600px; padding: 40px;">
+            <div class="section-header" style="margin-bottom: 30px;">
+                <h2>Contact Us</h2>
+                <p>Have any questions? We'd love to hear from you.</p>
+            </div>
+            <script>var submitted = false;</script>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { document.getElementById('contactUsForm').style.display='none'; document.getElementById('thankYouMessage').style.display='block'; }"></iframe>
+
+            <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdTx73iBS5A8X3RW3jM7p0czhFP-4d3e1EM6e_Slglf2RKhUg/formResponse" method="POST" target="hidden_iframe" id="contactUsForm" style="display: flex; flex-direction: column; gap: 20px;" onsubmit="submitted=true; setTimeout(() => { if(document.activeElement){document.activeElement.blur();} }, 100);">
+                <input type="text" name="entry.1942431576" placeholder="Your Name" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'">
+                <input type="email" name="entry.1563792724" placeholder="Email Address" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'">
+                <textarea name="entry.358450186" placeholder="Your Message" rows="5" required style="padding: 15px; border-radius: var(--border-radius); border: 1px solid #ddd; font-family: var(--font-body); font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#ddd'"></textarea>
+                <button type="submit" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px; width: 100%;">Send Message</button>
+            </form>
+
+            <div id="thankYouMessage" style="display: none; text-align: center; padding: 40px 20px; border-radius: var(--border-radius); background: rgba(255, 255, 255, 0.5);">
+                <div style="font-size: 3.5rem; margin-bottom: 15px;">✅</div>
+                <h3 style="font-size: 1.8rem; color: var(--text-dark); margin-bottom: 10px; font-weight: 700;">Thank You!</h3>
+                <p style="color: var(--text-light); font-size: 1.1rem; line-height: 1.6;">We have received your message and will get back to you shortly.</p>
+                <button onclick="document.getElementById('thankYouMessage').style.display='none'; document.getElementById('contactUsForm').reset(); document.getElementById('contactUsForm').style.display='flex'; submitted=false;" class="btn btn-secondary" style="margin-top: 25px; padding: 10px 25px; font-size: 1rem; border: none; cursor: pointer; border-radius: var(--border-radius);">Send Another</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-brand">NammudeShop</div>
+            <div class="footer-links" style="margin: 20px 0;">
+                <a href="terms.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Terms and Conditions</a>
+                <a href="privacy.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Privacy Policy</a>
+                <a href="refund.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Refund Policy</a>
+                <a href="shipping.html" style="margin: 0 15px; color: rgba(255,255,255,0.9); font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">Shipping Policy</a>
+            </div>
+            <p>© 2026 NammudeShop. All rights reserved.</p>
+        </div>
+        <p>This web site is owned by JEEJA ULLAS.</p>
+        </div>
+        Nammudeshopp
+        Kothamangalam
+        Ernakulam,kerala-686691
+        india
+         </div>
+        
+        
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
