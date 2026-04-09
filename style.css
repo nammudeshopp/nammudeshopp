@@ -35,6 +35,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -42,6 +44,10 @@ body {
     background-color: var(--background);
     color: var(--text-dark);
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+section {
     overflow-x: hidden;
 }
 
@@ -178,9 +184,10 @@ img {
 /* ================== SEQUENCE ANIMATION SECTION ================== */
 #features-sequence {
     position: relative;
-    height: 400vh; /* creates scrolling space for 4 scroll phases */
+    height: 240vh; /* creates scrolling space for scroll phases without excessive blank area */
     background-color: var(--background);
     margin-top: 70px; /* offset for navbar to not cover it immediately */
+    overflow: hidden;
 }
 
 .sequence-sticky {
@@ -578,6 +585,8 @@ img {
     border-radius: 24px;
     background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,248,240,0.92) 100%);
     box-shadow: var(--shadow-soft);
+    max-width: 780px;
+    margin: 0 auto;
 }
 
 .review-card h3 {
@@ -637,9 +646,17 @@ footer p {
     .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    #features-sequence {
+        height: 180vh;
+    }
 }
 
 @media (max-width: 768px) {
+    #features-sequence {
+        height: 150vh;
+    }
+
     .navbar {
         padding: 15px 5%;
     }
@@ -716,6 +733,42 @@ footer p {
     }
 }
 
+@media (max-width: 540px) {
+    #features-sequence {
+        height: 130vh;
+    }
+
+    .hero {
+        padding: 90px 0 70px;
+        background-position: center center;
+        background-attachment: scroll;
+    }
+
+    .hero h1 {
+        font-size: 2.1rem;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1.05rem;
+    }
+
+    .pricing {
+        padding: 70px 0;
+    }
+
+    .product-highlight {
+        padding: 70px 0;
+    }
+
+    .review-cta {
+        padding: 60px 0;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
 @media (max-width: 540px) {
     .hero {
         padding: 90px 0 70px;
