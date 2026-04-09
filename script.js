@@ -25,6 +25,33 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Mobile burger menu toggle
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+if (burger && navLinks) {
+    const closeMenu = () => {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+    };
+
+    burger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        burger.classList.toggle('open', isOpen);
+        burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+            closeMenu();
+        }
+    });
+}
+
 // Product Image Color Swapper Logic
 const colorDots = document.querySelectorAll('.color-dot');
 // Assuming we only have the green physical image since the prompt only provided one image 
