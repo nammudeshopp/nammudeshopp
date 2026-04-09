@@ -25,33 +25,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile burger menu toggle
-const burger = document.querySelector('.burger');
-const navLinks = document.querySelector('.nav-links');
-if (burger && navLinks) {
-    const closeMenu = () => {
-        navLinks.classList.remove('open');
-        burger.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-    };
-
-    burger.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('open');
-        burger.classList.toggle('open', isOpen);
-        burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 900) {
-            closeMenu();
-        }
-    });
-}
-
 // Product Image Color Swapper Logic
 const colorDots = document.querySelectorAll('.color-dot');
 // Assuming we only have the green physical image since the prompt only provided one image 
@@ -180,3 +153,91 @@ gsap.to('.hero', {
     backgroundPosition: "50% 100%", // creates a subtle parallax pan
     ease: "none"
 });
+
+// ==========================================
+// REVIEWS TOGGLE & RENDER
+// ==========================================
+const reviewsData = [
+    {
+        name: "Rahul K.",
+        rating: 5,
+        review: "സാധനം ഏതായാലും കൊള്ളാം പൈസക്ക് മൊതലാവും ഒറപ്പ് 💯"
+    },
+    {
+        name: "Anita S.",
+        rating: 4,
+        review: "item കൊള്ളാം, simple ആയിട്ട് പാത്രം ഒക്കെ കഴുകാൻ പറ്റും പിന്നെ free delivery ആയോണ്ട് കൊടുത്ത പൈസക്ക് ലാഭണ്"
+    },
+    {
+        name: "Faisal M.",
+        rating: 4,
+        review: "sanam വിചാരചിക്കനേക്കാളും adipoliyan"
+    },
+    {
+        name: "divya",
+        rating: 4,
+        review: "offer കൊള്ളാം, പത്തു steel wool kitumm🤍"
+    },
+    {
+        name: "megha",
+        rating: 3,
+        review: "oil dispenser nn korach neelam korvahn enna kozhappam matram ollu combo offer istayi🫶"
+    },
+    {
+        name: "vaishnav vinod",
+        rating: 3,
+        review: "quality💯"
+    }
+];
+
+const toggleReviewsBtn = document.getElementById('toggleReviewsBtn');
+const reviewsList = document.getElementById('reviewsList');
+const reviewTriggers = document.querySelectorAll('[data-review-trigger]');
+
+if (toggleReviewsBtn && reviewsList) {
+    const renderStars = (rating) => {
+        const filled = '★'.repeat(Math.max(0, Math.min(5, rating)));
+        const empty = '☆'.repeat(5 - Math.max(0, Math.min(5, rating)));
+        return `${filled}${empty}`;
+    };
+
+    const renderReviews = () => {
+        reviewsList.innerHTML = reviewsData.map((item) => `
+            <article class="review-card">
+                <div class="review-meta">
+                    <span class="review-name">${item.name}</span>
+                    <span class="rating-badge">${item.rating}/5</span>
+                </div>
+                <div class="stars" aria-label="${item.rating} out of 5 stars">${renderStars(item.rating)}</div>
+                <p class="review-text">${item.review}</p>
+            </article>
+        `).join('');
+        reviewsList.dataset.rendered = 'true';
+    };
+
+    const openReviews = () => {
+        if (!reviewsList.dataset.rendered) {
+            renderReviews();
+        }
+        if (!reviewsList.classList.contains('open')) {
+            reviewsList.classList.add('open');
+            toggleReviewsBtn.textContent = 'Hide Reviews';
+            toggleReviewsBtn.setAttribute('aria-expanded', 'true');
+            reviewsList.setAttribute('aria-hidden', 'false');
+        }
+        reviewsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    toggleReviewsBtn.addEventListener('click', () => {
+        if (!reviewsList.dataset.rendered) {
+            renderReviews();
+        }
+
+        const isOpen = reviewsList.classList.toggle('open');
+        toggleReviewsBtn.textContent = isOpen ? 'Hide Reviews' : 'Show Reviews';
+        toggleReviewsBtn.setAttribute('aria-expanded', isOpen.toString());
+        reviewsList.setAttribute('aria-hidden', (!isOpen).toString());
+    });
+
+    reviewTriggers.forEach(btn => btn.addEventListener('click', openReviews));
+}

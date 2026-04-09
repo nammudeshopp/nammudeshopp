@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- GSAP for Apple-like Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -18,17 +19,12 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo">Nammude<span>Shop</span></div>
-        <nav class="nav-links">
+        <nav>
             <a href="#home">Home</a>
             <a href="#product">Product</a>
             <a href="#pricing">Combos</a>
             <a href="#contact">Contact Us</a>
         </nav>
-        <button class="burger" type="button" aria-label="Toggle navigation" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </header>
 
     <!-- Scroll Sequence Animation Section -->
@@ -90,7 +86,10 @@
                         <li><span class="check">✓</span> Built-in sponge holder</li>
                         <li><span class="check">✓</span> Premium high-quality build</li>
                     </ul>
-                    <a href="#pricing" class="btn btn-primary btn-large">View Prices</a>
+                    <div class="product-cta">
+                        <a href="#pricing" class="btn btn-primary btn-large">View Prices</a>
+                        <button type="button" class="btn btn-review" data-review-trigger>Read Reviews</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,6 +159,21 @@
                     <button class="btn btn-secondary buy-btn pop-pulse">Buy Now</button>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container glass-panel reviews-panel">
+            <div class="reviews-header">
+                <div>
+                    <p class="eyebrow">Hear from our buyers</p>
+                    <h2>Customer Reviews</h2>
+                    <p class="subhead">Real feedback from kitchens across Kerala.</p>
+                </div>
+                <button class="btn btn-review" id="toggleReviewsBtn" aria-expanded="false">Show Reviews</button>
+            </div>
+            <div class="reviews-list" id="reviewsList" aria-hidden="true"></div>
         </div>
     </section>
 
