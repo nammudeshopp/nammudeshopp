@@ -193,6 +193,11 @@ const reviewsData = [
 const toggleReviewsBtn = document.getElementById('toggleReviewsBtn');
 const reviewsList = document.getElementById('reviewsList');
 const reviewTriggers = document.querySelectorAll('[data-review-trigger]');
+const writeReviewWrap = document.getElementById('writeReviewWrap');
+const writeReviewBtn = document.getElementById('writeReviewBtn');
+const reviewModal = document.getElementById('reviewModal');
+const closeReviewModalBtn = document.getElementById('closeReviewModal');
+const reviewForm = document.getElementById('reviewForm');
 
 if (toggleReviewsBtn && reviewsList) {
     const renderStars = (rating) => {
@@ -215,6 +220,30 @@ if (toggleReviewsBtn && reviewsList) {
         reviewsList.dataset.rendered = 'true';
     };
 
+    const setWriteReviewButtonState = (isOpen) => {
+        if (!writeReviewWrap) {
+            return;
+        }
+        writeReviewWrap.classList.toggle('open', isOpen);
+        writeReviewWrap.setAttribute('aria-hidden', (!isOpen).toString());
+    };
+
+    const openReviewModal = () => {
+        if (!reviewModal) {
+            return;
+        }
+        reviewModal.classList.add('open');
+        reviewModal.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeReviewModal = () => {
+        if (!reviewModal) {
+            return;
+        }
+        reviewModal.classList.remove('open');
+        reviewModal.setAttribute('aria-hidden', 'true');
+    };
+
     const openReviews = () => {
         if (!reviewsList.dataset.rendered) {
             renderReviews();
@@ -225,6 +254,7 @@ if (toggleReviewsBtn && reviewsList) {
             toggleReviewsBtn.setAttribute('aria-expanded', 'true');
             reviewsList.setAttribute('aria-hidden', 'false');
         }
+        setWriteReviewButtonState(true);
         reviewsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
@@ -237,7 +267,58 @@ if (toggleReviewsBtn && reviewsList) {
         toggleReviewsBtn.textContent = isOpen ? 'Hide Reviews' : 'Show Reviews';
         toggleReviewsBtn.setAttribute('aria-expanded', isOpen.toString());
         reviewsList.setAttribute('aria-hidden', (!isOpen).toString());
+        setWriteReviewButtonState(isOpen);
     });
 
     reviewTriggers.forEach(btn => btn.addEventListener('click', openReviews));
+
+    if (writeReviewBtn) {
+        writeReviewBtn.addEventListener('click', openReviewModal);
+    }
+
+    if (closeReviewModalBtn) {
+        closeReviewModalBtn.addEventListener('click', closeReviewModal);
+    }
+
+    if (reviewModal) {
+        reviewModal.addEventListener('click', (event) => {
+            if (event.target === reviewModal) {
+                closeReviewModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && reviewModal && reviewModal.classList.contains('open')) {
+            closeReviewModal();
+        }
+    });
+
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('reviewerName');
+            const ratingInput = document.getElementById('reviewerRating');
+            const reviewInput = document.getElementById('reviewerText');
+
+            if (!nameInput || !ratingInput || !reviewInput) {
+                return;
+            }
+
+            const name = nameInput.value.trim();
+            const rating = Number(ratingInput.value);
+            const review = reviewInput.value.trim();
+
+            if (!name || !rating || !review) {
+                return;
+            }
+
+            reviewsData.unshift({ name, rating, review });
+            renderReviews();
+            reviewForm.reset();
+            closeReviewModal();
+            openReviews();
+        });
+    }
 }
