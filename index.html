@@ -113,7 +113,7 @@
                         <p class="card-desc">3 in 1 soap pump dispenser with sponge holder for kitchen sink & bathroom. Stylish and functional dish soap pump. Available in green and pink.</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                    <button class="btn btn-primary buy-btn" onclick="window.location.href='https://superprofile.bio/vp/2-in-1-kitchen-dispenser'">Buy Now</button>
                 </div>
 
                 <!-- 2. NAMMUDE COMBO -->
@@ -130,7 +130,7 @@
                         <p class="card-desc">FOR KITCHEN DISPENSER 3 in 1 soap pump dispenser with sponge holder. Best value combo for home use. Perfect backup for the bathroom!</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                    <button class="btn btn-primary buy-btn" onclick="window.location.href='https://superprofile.bio/vp/2IN1KITCHENDISPENSERS'">Buy Now</button>
                 </div>
 
                 <!-- 3. STARTER COMBO -->
@@ -143,7 +143,7 @@
                         <p class="card-desc">ABS plastic 3 in 1 soap dispenser + 10x non-scratch steel wool dish cloth (wire dish washing rags).</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                    <button class="btn btn-primary buy-btn" onclick="window.location.href='https://superprofile.bio/vp/2IN1KITCHENDISPENSERSWI'">Buy Now</button>
                 </div>
 
                 <!-- 4. MOST POPULAR -->
@@ -156,7 +156,7 @@
                         <p class="card-desc">3 in 1 soap dispenser + oil dispenser bottle with silicone brush. Perfect for cooking, BBQ, dosa making, and kitchen use.</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-secondary buy-btn pop-pulse">Buy Now</button>
+                    <button class="btn btn-secondary buy-btn pop-pulse" onclick="window.location.href='https://superprofile.bio/vp/2IN1'">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -174,8 +174,31 @@
                 <button class="btn btn-review" id="toggleReviewsBtn" aria-expanded="false">Show Reviews</button>
             </div>
             <div class="reviews-list" id="reviewsList" aria-hidden="true"></div>
+            <div class="write-review-wrap" id="writeReviewWrap" aria-hidden="true">
+                <button class="btn btn-secondary write-review-btn" id="writeReviewBtn" type="button">Write Reviews on App</button>
+            </div>
         </div>
     </section>
+
+    <div class="review-modal" id="reviewModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+        <div class="review-modal-card">
+            <button class="review-modal-close" id="closeReviewModal" type="button" aria-label="Close popup">&times;</button>
+            <h3 id="reviewModalTitle">Write Your Review</h3>
+            <form id="reviewForm" class="review-form">
+                <input type="text" id="reviewerName" placeholder="Your name" required>
+                <select id="reviewerRating" required>
+                    <option value="">Select rating</option>
+                    <option value="5">5/5 - Excellent</option>
+                    <option value="4">4/5 - Very Good</option>
+                    <option value="3">3/5 - Good</option>
+                    <option value="2">2/5 - Fair</option>
+                    <option value="1">1/5 - Poor</option>
+                </select>
+                <textarea id="reviewerText" rows="4" placeholder="Write your review..." required></textarea>
+                <button class="btn btn-primary" type="submit">Submit Review</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section" style="padding: 100px 0; background-color: var(--white);">
