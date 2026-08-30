@@ -15,35 +15,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Navbar background change on scroll
 const navbar = document.querySelector('.navbar');
-let navbarUpdateQueued = false;
-let navbarIsScrolled = false;
-
-const updateNavbar = () => {
-    const isScrolled = window.scrollY > 50;
-    navbarUpdateQueued = false;
-
-    if (isScrolled === navbarIsScrolled) return;
-
-    navbarIsScrolled = isScrolled;
-    if (isScrolled) {
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
         navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
         navbar.style.background = 'rgba(255, 248, 240, 0.98)';
     } else {
         navbar.style.boxShadow = 'none';
         navbar.style.background = 'rgba(255, 248, 240, 0.9)';
     }
-};
-
-window.addEventListener('scroll', () => {
-    if (!navbarUpdateQueued) {
-        navbarUpdateQueued = true;
-        requestAnimationFrame(updateNavbar);
-    }
-}, { passive: true });
+});
 
 // Product Image Color Swapper Logic
 const colorDots = document.querySelectorAll('.color-dot');
-const mainImg = document.querySelector('.main-product-img');
 // Assuming we only have the green physical image since the prompt only provided one image 
 // for the 3-in-1 dispenser, we will just simulate a subtle effect for the user selection.
 colorDots.forEach(dot => {
@@ -54,6 +37,7 @@ colorDots.forEach(dot => {
         this.classList.add('active');
         
         // Simple scale effect to show interaction
+        const mainImg = document.querySelector('.main-product-img');
         mainImg.style.transform = 'scale(0.95)';
         setTimeout(() => {
             mainImg.style.transform = 'scale(1)';
@@ -97,72 +81,36 @@ if (canvas) {
 
     const frameCount = 240;
     const currentFrame = index => (
-      `7/an/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
+      `7/an/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.png`
     );
 
-    const images = new Map();
+    const images = [];
     const imageSequence = {
       frame: 0
     };
-    const preloadAhead = 24;
-    const preloadBehind = 6;
-    const maxCachedFrames = 48;
 
-    const loadFrame = index => {
-        if (index < 0 || index >= frameCount || images.has(index)) {
-            return images.get(index);
-        }
-
-        const image = new Image();
-        image.decoding = 'async';
-        image.src = currentFrame(index);
-        image.addEventListener('error', () => {
-            if (images.get(index) === image) images.delete(index);
-        }, { once: true });
-        images.set(index, image);
-        return image;
+    // Preload first image and set dimensions
+    const initialImage = new Image();
+    initialImage.src = currentFrame(0);
+    initialImage.onload = () => {
+        canvas.width = initialImage.width;
+        canvas.height = initialImage.height;
+        context.drawImage(initialImage, 0, 0);
     };
 
-    const trimFrameCache = currentFrameIndex => {
-        if (images.size <= maxCachedFrames) return;
-
-        [...images.keys()]
-            .sort((a, b) => Math.abs(b - currentFrameIndex) - Math.abs(a - currentFrameIndex))
-            .slice(0, images.size - maxCachedFrames)
-            .forEach(index => images.delete(index));
-    };
-
-    const preloadNearbyFrames = currentFrameIndex => {
-        const start = Math.max(0, currentFrameIndex - preloadBehind);
-        const end = Math.min(frameCount - 1, currentFrameIndex + preloadAhead);
-
-        for (let index = start; index <= end; index += 1) {
-            loadFrame(index);
-        }
-
-        trimFrameCache(currentFrameIndex);
-    };
-
-    const render = () => {
-        const frameIndex = Math.round(imageSequence.frame);
-        const image = loadFrame(frameIndex);
-
-        if (image && image.complete && image.naturalWidth) {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.drawImage(image, 0, 0);
-        }
-
-        preloadNearbyFrames(frameIndex);
+    // Preload all images
+    for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        img.src = currentFrame(i);
+        images.push(img);
     }
 
-    // Load only the first visible frame immediately. Remaining frames are
-    // requested around the viewer's scroll position instead of all at once.
-    const initialImage = loadFrame(0);
-    initialImage.addEventListener('load', () => {
-        canvas.width = initialImage.naturalWidth;
-        canvas.height = initialImage.naturalHeight;
-        render();
-    }, { once: true });
+    const render = () => {
+        if(images[imageSequence.frame] && images[imageSequence.frame].complete) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(images[imageSequence.frame], 0, 0);
+        }
+    }
 
     // Scroll animation for sequence frames
     gsap.to(imageSequence, {
@@ -205,3 +153,172 @@ gsap.to('.hero', {
     backgroundPosition: "50% 100%", // creates a subtle parallax pan
     ease: "none"
 });
+
+// ==========================================
+// REVIEWS TOGGLE & RENDER
+// ==========================================
+const reviewsData = [
+    {
+        name: "Rahul K.",
+        rating: 5,
+        review: "സാധനം ഏതായാലും കൊള്ളാം പൈസക്ക് മൊതലാവും ഒറപ്പ് 💯"
+    },
+    {
+        name: "Anita S.",
+        rating: 4,
+        review: "item കൊള്ളാം, simple ആയിട്ട് പാത്രം ഒക്കെ കഴുകാൻ പറ്റും പിന്നെ free delivery ആയോണ്ട് കൊടുത്ത പൈസക്ക് ലാഭണ്"
+    },
+    {
+        name: "Faisal M.",
+        rating: 4,
+        review: "sanam വിചാരചിക്കനേക്കാളും adipoliyan"
+    },
+    {
+        name: "divya",
+        rating: 4,
+        review: "offer കൊള്ളാം, പത്തു steel wool kitumm🤍"
+    },
+    {
+        name: "megha",
+        rating: 3,
+        review: "oil dispenser nn korach neelam korvahn enna kozhappam matram ollu combo offer istayi🫶"
+    },
+    {
+        name: "vaishnav vinod",
+        rating: 3,
+        review: "quality💯"
+    }
+];
+
+const toggleReviewsBtn = document.getElementById('toggleReviewsBtn');
+const reviewsList = document.getElementById('reviewsList');
+const reviewTriggers = document.querySelectorAll('[data-review-trigger]');
+const writeReviewWrap = document.getElementById('writeReviewWrap');
+const writeReviewBtn = document.getElementById('writeReviewBtn');
+const reviewModal = document.getElementById('reviewModal');
+const closeReviewModalBtn = document.getElementById('closeReviewModal');
+const reviewForm = document.getElementById('reviewForm');
+
+if (toggleReviewsBtn && reviewsList) {
+    const renderStars = (rating) => {
+        const filled = '★'.repeat(Math.max(0, Math.min(5, rating)));
+        const empty = '☆'.repeat(5 - Math.max(0, Math.min(5, rating)));
+        return `${filled}${empty}`;
+    };
+
+    const renderReviews = () => {
+        reviewsList.innerHTML = reviewsData.map((item) => `
+            <article class="review-card">
+                <div class="review-meta">
+                    <span class="review-name">${item.name}</span>
+                    <span class="rating-badge">${item.rating}/5</span>
+                </div>
+                <div class="stars" aria-label="${item.rating} out of 5 stars">${renderStars(item.rating)}</div>
+                <p class="review-text">${item.review}</p>
+            </article>
+        `).join('');
+        reviewsList.dataset.rendered = 'true';
+    };
+
+    const setWriteReviewButtonState = (isOpen) => {
+        if (!writeReviewWrap) {
+            return;
+        }
+        writeReviewWrap.classList.toggle('open', isOpen);
+        writeReviewWrap.setAttribute('aria-hidden', (!isOpen).toString());
+    };
+
+    const openReviewModal = () => {
+        if (!reviewModal) {
+            return;
+        }
+        reviewModal.classList.add('open');
+        reviewModal.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeReviewModal = () => {
+        if (!reviewModal) {
+            return;
+        }
+        reviewModal.classList.remove('open');
+        reviewModal.setAttribute('aria-hidden', 'true');
+    };
+
+    const openReviews = () => {
+        if (!reviewsList.dataset.rendered) {
+            renderReviews();
+        }
+        if (!reviewsList.classList.contains('open')) {
+            reviewsList.classList.add('open');
+            toggleReviewsBtn.textContent = 'Hide Reviews';
+            toggleReviewsBtn.setAttribute('aria-expanded', 'true');
+            reviewsList.setAttribute('aria-hidden', 'false');
+        }
+        setWriteReviewButtonState(true);
+        reviewsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    toggleReviewsBtn.addEventListener('click', () => {
+        if (!reviewsList.dataset.rendered) {
+            renderReviews();
+        }
+
+        const isOpen = reviewsList.classList.toggle('open');
+        toggleReviewsBtn.textContent = isOpen ? 'Hide Reviews' : 'Show Reviews';
+        toggleReviewsBtn.setAttribute('aria-expanded', isOpen.toString());
+        reviewsList.setAttribute('aria-hidden', (!isOpen).toString());
+        setWriteReviewButtonState(isOpen);
+    });
+
+    reviewTriggers.forEach(btn => btn.addEventListener('click', openReviews));
+
+    if (writeReviewBtn) {
+        writeReviewBtn.addEventListener('click', openReviewModal);
+    }
+
+    if (closeReviewModalBtn) {
+        closeReviewModalBtn.addEventListener('click', closeReviewModal);
+    }
+
+    if (reviewModal) {
+        reviewModal.addEventListener('click', (event) => {
+            if (event.target === reviewModal) {
+                closeReviewModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && reviewModal && reviewModal.classList.contains('open')) {
+            closeReviewModal();
+        }
+    });
+
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('reviewerName');
+            const ratingInput = document.getElementById('reviewerRating');
+            const reviewInput = document.getElementById('reviewerText');
+
+            if (!nameInput || !ratingInput || !reviewInput) {
+                return;
+            }
+
+            const name = nameInput.value.trim();
+            const rating = Number(ratingInput.value);
+            const review = reviewInput.value.trim();
+
+            if (!name || !rating || !review) {
+                return;
+            }
+
+            reviewsData.unshift({ name, rating, review });
+            renderReviews();
+            reviewForm.reset();
+            closeReviewModal();
+            openReviews();
+        });
+    }
+}
