@@ -9,11 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="preload" as="image" href="7/an/ezgif-frame-001.jpg" fetchpriority="high">
     <!-- GSAP for Apple-like Animations -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -35,7 +35,7 @@
     </section>
 
     <!-- Hero Section -->
-    <section id="home" class="hero" style="background-image: url('assets/nammude_hero_bg_1775285581914.jpg');">
+    <section id="home" class="hero" style="background-image: url('assets/nammude_hero_bg_1775285581914.png');">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="badge fade-in-up">#1 Kitchen Essential</span>
@@ -48,12 +48,27 @@
         </div>
     </section>
 
+    <!-- Review Call-to-Action -->
+    <section class="review-cta">
+        <div class="container">
+            <div class="glass-panel review-card">
+                <h3>Love your NammudeShop purchase?</h3>
+                <p>Your feedback keeps us improving. Share a quick review in seconds.</p>
+                <button class="btn btn-primary review-btn" onclick="toggleReviews()" type="button">
+  See Reviews
+</button>
+
+<div id="reviewsContainer"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Product Highlight Section -->
     <section id="product" class="product-highlight">
         <div class="container glass-panel">
             <div class="product-split">
                 <div class="product-image-wrapper">
-                    <img src="assets/nammude_product_1775285594469.jpg" alt="3 in 1 Soap Pump Dispenser" class="main-product-img" width="1344" height="768" loading="lazy" decoding="async">
+                    <img src="assets/nammude_product_1775285594469.png" alt="3 in 1 Soap Pump Dispenser" class="main-product-img">
                     <div class="color-options">
                         <span class="color-dot green active" title="Green"></span>
                         <span class="color-dot pink" title="Pink"></span>
@@ -71,7 +86,10 @@
                         <li><span class="check">✓</span> Built-in sponge holder</li>
                         <li><span class="check">✓</span> Premium high-quality build</li>
                     </ul>
-                    <a href="#pricing" class="btn btn-primary btn-large">View Prices</a>
+                    <div class="product-cta">
+                        <a href="#pricing" class="btn btn-primary btn-large">View Prices</a>
+                        <button type="button" class="btn btn-review" data-review-trigger>Read Reviews</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,11 +109,11 @@
                     <div class="card-content">
                         <h3 class="card-title">Single Product</h3>
                         <div class="price">₹300</div>
-                        <img src="assets/nammude_product_1775285594469.jpg" alt="Single Product" class="card-img" width="1344" height="768" loading="lazy" decoding="async">
+                        <img src="assets/nammude_product_1775285594469.png" alt="Single Product" class="card-img">
                         <p class="card-desc">3 in 1 soap pump dispenser with sponge holder for kitchen sink & bathroom. Stylish and functional dish soap pump. Available in green and pink.</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                    <button class="btn btn-primary buy-btn" onclick="window.location.href='https://superprofile.bio/vp/2-in-1-kitchen-dispenser'">Buy Now</button>
                 </div>
 
                 <!-- 2. NAMMUDE COMBO -->
@@ -108,11 +126,11 @@
                             <span class="old-price" style="font-size: 1.2rem;">₹600 ❌</span>
                             <span class="new-price" style="font-size: 1.8rem;">₹499 ✅</span>
                         </div>
-                        <img src="assets/nammude_combo.jpg" alt="Nammude Combo" class="card-img combo-img" width="1344" height="768" loading="lazy" decoding="async">
+                        <img src="7/New%20folder/df398d57-fb05-48f3-81c0-ff108bba734f.png" alt="Nammude Combo" class="card-img combo-img">
                         <p class="card-desc">FOR KITCHEN DISPENSER 3 in 1 soap pump dispenser with sponge holder. Best value combo for home use. Perfect backup for the bathroom!</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                    <button class="btn btn-primary buy-btn" onclick="window.location.href='https://superprofile.bio/vp/2IN1KITCHENDISPENSERS'">Buy Now</button>
                 </div>
 
                 <!-- 3. STARTER COMBO -->
@@ -121,11 +139,11 @@
                     <div class="card-content">
                         <h3 class="card-title">STARTER COMBO</h3>
                         <div class="price">₹329</div>
-                        <img src="assets/nammude_starter_combo_1775285689366.jpg" alt="Starter Combo" class="card-img" width="1344" height="768" loading="lazy" decoding="async">
+                        <img src="assets/nammude_starter_combo_1775285689366.png" alt="Starter Combo" class="card-img">
                         <p class="card-desc">ABS plastic 3 in 1 soap dispenser + 10x non-scratch steel wool dish cloth (wire dish washing rags).</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-primary buy-btn">Buy Now</button>
+                    <button class="btn btn-primary buy-btn" onclick="window.location.href='https://superprofile.bio/vp/2IN1KITCHENDISPENSERSWI'">Buy Now</button>
                 </div>
 
                 <!-- 4. MOST POPULAR -->
@@ -134,15 +152,53 @@
                     <div class="card-content">
                         <h3 class="card-title">MOST POPULAR</h3>
                         <div class="price">₹449</div>
-                        <img src="assets/nammude_popular_combo_1775285784123.jpg" alt="Most Popular Combo" class="card-img" width="1536" height="1024" loading="lazy" decoding="async">
+                        <img src="assets/nammude_popular_combo_1775285784123.png" alt="Most Popular Combo" class="card-img">
                         <p class="card-desc">3 in 1 soap dispenser + oil dispenser bottle with silicone brush. Perfect for cooking, BBQ, dosa making, and kitchen use.</p>
                         <div class="free-delivery" style="color: #E63946; font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">Free Delivery 🚚</div>
                     </div>
-                    <button class="btn btn-secondary buy-btn pop-pulse">Buy Now</button>
+                    <button class="btn btn-secondary buy-btn pop-pulse" onclick="window.location.href='https://superprofile.bio/vp/2IN1'">Buy Now</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container glass-panel reviews-panel">
+            <div class="reviews-header">
+                <div>
+                    <p class="eyebrow">Hear from our buyers</p>
+                    <h2>Customer Reviews</h2>
+                    <p class="subhead">Real feedback from kitchens across Kerala.</p>
+                </div>
+                <button class="btn btn-review" id="toggleReviewsBtn" aria-expanded="false">Show Reviews</button>
+            </div>
+            <div class="reviews-list" id="reviewsList" aria-hidden="true"></div>
+            <div class="write-review-wrap" id="writeReviewWrap" aria-hidden="true">
+                <button class="btn btn-secondary write-review-btn" id="writeReviewBtn" type="button">Write Reviews on App</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="review-modal" id="reviewModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+        <div class="review-modal-card">
+            <button class="review-modal-close" id="closeReviewModal" type="button" aria-label="Close popup">&times;</button>
+            <h3 id="reviewModalTitle">Write Your Review</h3>
+            <form id="reviewForm" class="review-form">
+                <input type="text" id="reviewerName" placeholder="Your name" required>
+                <select id="reviewerRating" required>
+                    <option value="">Select rating</option>
+                    <option value="5">5/5 - Excellent</option>
+                    <option value="4">4/5 - Very Good</option>
+                    <option value="3">3/5 - Good</option>
+                    <option value="2">2/5 - Fair</option>
+                    <option value="1">1/5 - Poor</option>
+                </select>
+                <textarea id="reviewerText" rows="4" placeholder="Write your review..." required></textarea>
+                <button class="btn btn-primary" type="submit">Submit Review</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section" style="padding: 100px 0; background-color: var(--white);">
@@ -182,8 +238,163 @@
             </div>
             <p>© 2026 NammudeShop. All rights reserved.</p>
         </div>
+        <p>This web site is owned by JEEJA ULLAS.</p>
+        </div>
+        Nammudeshopp
+        Kothamangalam
+        Ernakulam,kerala-686691
+        india
+         </div>
+        
+        
     </footer>
     
-    <script defer src="script.js"></script>
+    <script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Reviews</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+}
+
+#reviewsContainer {
+  display: none;
+  margin-top: 20px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.review-content {
+  flex: 1;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.stars {
+  color: gold;
+  margin: 5px 0;
+}
+
+.badge {
+  background: #e6f4ea;
+  color: #2e7d32;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.source {
+  font-size: 12px;
+  color: gray;
+}
+</style>
+
+</head>
+<body>
+
+<h2>Customer Reviews</h2>
+
+<button onclick="toggleReviews()">Show Reviews</button>
+
+<div id="reviewsContainer"></div>
+
+<script>
+const reviews = [
+  {
+    name: "Rahul K.",
+    rating: 5,
+    review: "സാധനം  ഏതായാലും  കൊള്ളാം  പൈസക്ക്  മൊതലാവും ഒറപ്പ് 💯 "
+  },
+  {
+    name: "Anita S.",
+    rating: 4,
+    review: "item കൊള്ളാം , simple ആയിട്ട് പാത്രം ഒക്കെ കഴുകാൻ പറ്റും പിന്നെ free delivery ആയോണ്ട് കൊടുത്ത പൈസക്ക് ലാഭണ് "
+  },
+  {
+    name: "Faisal M.",
+    rating: 4,
+    review: "sanam വിചാരചിക്കനേക്കാളും adipoliyan"
+  },
+  {
+    name: "divya",
+    rating: 4,
+    review: "offer കൊള്ളാം  പത്തു steel wool kitumm🤍 "
+  },
+  {
+    name: "megha",
+    rating: 3,
+    review: " oil dispenser nn korach neelam korvahn enna kozhappam matram ollu combo offer istayi🫶  "
+  },
+  {
+    name: "vaishnav vinod",
+    rating: 3,
+    review: " quality💯  "
+  }
+  
+  
+  
+];
+
+function getStars(rating) {
+  let stars = "";
+  for (let i = 0; i < 5; i++) {
+    stars += i < rating ? "★" : "☆";
+  }
+  return stars;
+}
+
+function toggleReviews() {
+  const container = document.getElementById("reviewsContainer");
+
+  if (container.style.display === "none") {
+    container.style.display = "block";
+    container.innerHTML = "";
+
+    reviews.forEach((r, index) => {
+      container.innerHTML += `
+        <div class="review-card">
+          <img class="avatar" src="https://i.pravatar.cc/40?img=${index+1}">
+          <div class="review-content">
+            <div class="name">
+              ${r.name}
+              <span class="badge">Verified Purchase</span>
+            </div>
+            <div class="stars">${getStars(r.rating)}</div>
+            <p>${r.review}</p>
+            <div class="source">Source: nammudeshopp</div>
+          </div>
+        </div>
+      `;
+    });
+
+  } else {
+    container.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
 </body>
 </html>
