@@ -93,7 +93,7 @@ a {
 
 /* ================== NAVBAR ================== */
 .navbar {
-    position: fixed;
+    position: static;
     top: 0;
     left: 0;
     width: 100%;
@@ -345,6 +345,13 @@ a {
     flex: 1;
 }
 
+.product-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+}
+
 .section-title {
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -521,6 +528,199 @@ a {
     animation: pulseEffect 2s infinite;
 }
 
+/* ================== REVIEWS ================== */
+.reviews {
+    padding: 90px 0;
+    background-color: var(--background);
+}
+
+.reviews-panel {
+    padding: 50px;
+}
+
+.reviews-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.subhead {
+    color: var(--text-light);
+    font-size: 1.05rem;
+}
+
+.btn-review {
+    background: linear-gradient(120deg, var(--primary) 0%, #294f35 50%, var(--accent) 100%);
+    color: var(--white);
+    border: none;
+    min-width: 170px;
+}
+
+.btn-review:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 12px 30px rgba(31, 61, 43, 0.35);
+}
+
+.reviews-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease, opacity 0.4s ease, margin-top 0.3s ease;
+}
+
+.reviews-list.open {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 32px;
+}
+
+.review-card {
+    padding: 20px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.review-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.05rem;
+}
+
+.rating-badge {
+    background: rgba(212, 163, 115, 0.12);
+    color: var(--primary);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.stars {
+    color: #E8A236;
+    letter-spacing: 2px;
+    font-size: 1rem;
+}
+
+.review-text {
+    font-family: "Noto Sans Malayalam", var(--font-body);
+    color: var(--text-dark);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.write-review-wrap {
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    text-align: center;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.write-review-wrap.open {
+    margin-top: 22px;
+    max-height: 120px;
+    opacity: 1;
+}
+
+.write-review-btn {
+    min-width: 220px;
+}
+
+.review-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 15, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 1200;
+}
+
+.review-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.review-modal-card {
+    width: min(520px, 100%);
+    background: var(--white);
+    border-radius: 18px;
+    padding: 24px 22px 20px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.review-modal-card h3 {
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+}
+
+.review-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.review-form {
+    display: grid;
+    gap: 12px;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+}
+
+.review-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
 /* ================== FOOTER ================== */
 footer {
     background-color: var(--primary);
@@ -556,15 +756,6 @@ footer p {
     .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
-}
-
-/* The source frames are 16:9. Contain them on phones and tablets so the
-   full product remains visible instead of cropping to the viewport. */
-@media (max-width: 1024px) {
-    #sequence-canvas {
-        object-fit: contain;
-    }
 }
 
 @media (max-width: 768px) {
@@ -598,5 +789,40 @@ footer p {
     
     .navbar nav {
         display: none; /* simple burger menu omission for minimal design, would add JS toggle normally */
+    }
+
+    .reviews-panel {
+        padding: 35px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero p {
+        font-size: 1.05rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .product-cta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pricing-card {
+        padding: 30px 22px;
+    }
+
+    .reviews-panel {
+        padding: 28px 18px;
+    }
+
+    .review-card {
+        padding: 18px 14px;
     }
 }
